@@ -22,7 +22,7 @@ export function configFromStringAndFormat(config) {
     config._a = [];
     getParsingFlags(config).empty = true;
 
-    // This array is used to make a Date, either with `new Date` or `Date.UTC`
+    // This array is used to make a Date, either with 'new Date' or 'Date.UTC'
     var string = '' + config._i,
         i, parsedInput, tokens, token, skipped,
         stringLength = string.length,

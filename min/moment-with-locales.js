@@ -8,7 +8,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
     global.moment = factory()
-}(this, function () { 'use strict';
+}(this, function () {
 
     var hookCallback;
 
@@ -2049,15 +2049,9 @@
         }
     }
 
-    utils_hooks__hooks.createFromInputFallback = deprecate(
-        'value provided is not in a recognized ISO format. moment construction falls back to js Date(), ' +
-        'which is not reliable across all browsers and versions. Non ISO date formats are ' +
-        'discouraged and will be removed in an upcoming major release. Please refer to ' +
-        'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
-        function (config) {
-            config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
-        }
-    );
+    utils_hooks__hooks.createFromInputFallback = function (config) {
+        config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
+    };
 
     // Pick the first defined of two or three arguments.
     function defaults(a, b, c) {
@@ -2212,7 +2206,7 @@
         config._a = [];
         getParsingFlags(config).empty = true;
 
-        // This array is used to make a Date, either with `new Date` or `Date.UTC`
+        // This array is used to make a Date, either with 'new Date' or 'Date.UTC'
         var string = '' + config._i,
             i, parsedInput, tokens, token, skipped,
             stringLength = string.length,
